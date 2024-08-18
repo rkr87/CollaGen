@@ -53,7 +53,14 @@ delete_file_content() {
 get_json_value() {
     local file="$1"
     local key="$2"
-    local value=$(sed -n "s/.*\"$key\":\s*\"\(.*\)\".*/\1/p" "$file")
+    local default_value="${3:-}"
+
+    local value=$(sed -n "s/.*\"$key\":\s*\"\([^\"]*\)\".*/\1/p" "$file" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')
+
+    if [ -z "$value" ]; then
+        value="$default_value"
+    fi
+
     echo "$value"
 }
 
@@ -61,7 +68,8 @@ set_json_value() {
     local file="$1"
     local key="$2"
     local new_value="$3"
-    sed -i "s/\"$key\":\s*\"[^\"]*\"/\"$key\": \"$new_value\"/" "$file"
+    local escaped_value=$(printf '%s' "$new_value" | sed 's/[&/\]/\\&/g')
+    sed -i "s/\"$key\":\s*\"[^\"]*\"/\"$key\": \"$escaped_value\"/" "$file"
     sync
 }
 
