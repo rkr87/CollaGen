@@ -15,11 +15,12 @@ create_shortcut() {
     local targetImgFile="$collectionDir/$IMG_DIR/$shortcutName.png"
 
     local includeRom=1
+    local excludeRom=0
     if grep -q "^$relativePath\$" "$addedFilesTemp"; then
-        local fileNameLower=$(lower_case "${fileName%.*}")
-        if [[ "$fileNameLower" != "$shortcutNameLower" ]]; then
-            includeRom=0
-        fi
+        includeRom=0
+    elif grep -q "^$relativePath\$" "$excludedFilesTemp"; then
+        includeRom=0
+        excludeRom=1
     else
         oldIFS=$IFS
         IFS=','
@@ -30,7 +31,15 @@ create_shortcut() {
 
             if [[ "$shortcutNameLower" == *"$exclusionLower"* ]]; then
                 includeRom=0
-                echo "    Excluding: $relativePath ($exclusionLower)"
+                excludeRom=1
+                echo "$relativePath" >> "$excludedFilesTemp"
+                feedback="    Excluding: $relativePath ($exclusionLower)"
+                if [ ${#feedback} -gt 50 ]; then
+                    relLen=$((50 - ${#feedback} + ${#relativePath}))
+                    relativePath="${relativePath:0:relLen}..."
+                    feedback="    Excluding: $relativePath ($exclusionLower)"
+                fi
+                echo "$feedback"
                 break
             fi
             shift
@@ -46,10 +55,9 @@ create_shortcut() {
         if [ -f "$imgFile" ] && [ ! -f "$targetImgFile" ]; then
             cp "$imgFile" "$targetImgFile"
         fi
-    else
+    elif [[ $excludeRom -eq 1 ]]; then
         if [ -f "$targetTextFile" ]; then
             rm "$targetTextFile"
-            echo "    Removed: $subDir/$shortcutName.txt"
         fi
         if [ -f "$targetImgFile" ]; then
             rm "$targetImgFile"

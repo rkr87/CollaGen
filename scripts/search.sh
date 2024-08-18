@@ -52,10 +52,12 @@ search_roms() {
     local excludeTerms="$2"
 
     addedFilesTemp=$(mktemp)
+    excludedFilesTemp=$(mktemp)
     echo ""
     echo "Identifying valid $collectionName collection items..."
     search_db_by_keywords "$searchTerms" "$excludeTerms"
     search_files_by_keywords "$searchTerms" "$excludeTerms"
     rm -f "$addedFilesTemp"
+    rm -f "$excludedFilesTemp"
     sync
 }
