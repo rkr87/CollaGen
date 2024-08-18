@@ -14,9 +14,13 @@ create_shortcut() {
     local targetTextFile="$targetDir/$shortcutName.txt"
     local targetImgFile="$collectionDir/$IMG_DIR/$shortcutName.png"
 
+    local validEmuExt=$(get_json_value "$ROOT_DIR/$EMU_DIR/$subDir/$DEFAULT_CONFIG" "$EMU_EXT_KEY" "")
+
     local includeRom=1
     local excludeRom=0
     if grep -q "^$relativePath\$" "$addedFilesTemp"; then
+        includeRom=0
+    elif [[ $(has_valid_extension "$relativePath" "$validEmuExt") -eq 0 ]]; then
         includeRom=0
     elif grep -q "^$relativePath\$" "$excludedFilesTemp"; then
         includeRom=0

@@ -5,6 +5,8 @@ ROOT_DIR="/mnt/SDCARD"
 BEST_DIR="Best"
 ROM_DIR="Roms"
 IMG_DIR="Imgs"
+EMU_DIR="Emus"
+EMU_EXT_KEY="extlist"
 
 ## SYSTEM
 SYSTEM_FILE="/mnt/UDISK/system.json"
@@ -13,7 +15,7 @@ LANG_DIR="/usr/trimui/res/lang"
 LANG_BEST_TAB_KEY="140"
 
 ## APP
-VERSION="2024.8.18.5"
+VERSION="2024.8.18.6"
 CONFIG_DIR="config"
 SCRIPTS_DIR="scripts"
 
