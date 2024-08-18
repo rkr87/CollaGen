@@ -89,15 +89,16 @@ delete_empty_folders() {
 }
 
 remove_redundant_images() {
-    validNames=$(find "$collectionDir/$ROM_DIR" -type f -name '*.txt' -exec basename {} .txt \;)
-    validNamesPattern=$(printf "%s\n" $validNames | sed 's/^/\b/;s/$/\b/;s/\n/|/g')
+    tmpFile=$(mktemp)
+    find "$collectionDir/$ROM_DIR" -type f -name '*.txt' -exec basename {} .txt \; > "$tmpFile"
     find "$collectionDir/$IMG_DIR" -type f -name '*.png' | while IFS= read -r img; do
         imgName=$(basename "$img" .png)
-        if ! echo "$validNames" | grep -q "^$imgName$"; then
+        if ! grep -Fxq "$imgName" "$tmpFile"; then
             rm "$img"
-            echo "  Removed redundant image: $imgName.png"
+            echo "  Remove image: $imgName.png"
         fi
     done
+    rm "$tmpFile"
 }
 
 delete_collection_shortcuts() {
