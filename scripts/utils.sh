@@ -102,3 +102,30 @@ echo_trim() {
     fi
     echo "$prefix$trimmable$suffix"
 }
+
+has_valid_extension() {
+    local file_path="$1"
+    local extensions="$2"
+    local delimiter="${3:-|}"
+
+    local file_extension="${file_path##*.}"
+
+    if [ -z "$extensions" ]; then
+        echo 1
+        return 0
+    fi
+
+    local valid=0
+    local ext
+    while [ -n "$extensions" ]; do
+        ext="${extensions%%"$delimiter"*}"
+        [ "$extensions" = "$ext" ] && extensions="" || extensions="${extensions#*"$delimiter"}"
+
+        if [ "$file_extension" = "$ext" ]; then
+            valid=1
+            break
+        fi
+    done
+
+    echo $valid
+}
