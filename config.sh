@@ -13,7 +13,7 @@ LANG_DIR="/usr/trimui/res/lang"
 LANG_BEST_TAB_KEY="140"
 
 ## APP
-VERSION="2024.8.18.5"
+VERSION="2024.8.18.6"
 CONFIG_DIR="config"
 SCRIPTS_DIR="scripts"
 
