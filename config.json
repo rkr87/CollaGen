@@ -1,0 +1,7 @@
+{
+    "label": "CollGen",
+    "icon": "icon.png",
+    "iconsel": "icon.png",
+    "launch": "launch.sh",
+    "description": "Collection Manager"
+}
