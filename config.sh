@@ -5,6 +5,8 @@ ROOT_DIR="/mnt/SDCARD"
 BEST_DIR="Best"
 ROM_DIR="Roms"
 IMG_DIR="Imgs"
+EMU_DIR="Emus"
+EMU_EXT_KEY="extlist"
 
 ## SYSTEM
 SYSTEM_FILE="/mnt/UDISK/system.json"
