@@ -75,3 +75,22 @@ list_to_string() {
     local commaList=$(echo "$1" | tr '\n' ',' | sed 's/,$//')
     echo "$commaList"
 }
+
+echo_trim() {
+    trimmable="$1"
+    maxLen=$2
+    prefix="$3"
+    suffix="$4"
+
+    preLen="${#prefix}"
+    trimLen="${#trimmable}"
+    sufLen="${#suffix}"
+
+    strLen=$(($preLen + $trimLen + $sufLen))
+
+    if [ $strLen -gt $maxLen ]; then
+        relLen=$(($maxLen - $strLen + $trimLen - 3))
+        trimmable="${trimmable:0:relLen}..."
+    fi
+    echo "$prefix$trimmable$suffix"
+}
