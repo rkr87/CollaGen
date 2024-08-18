@@ -115,7 +115,7 @@ show_edit_collection_menu() {
         2) show_edit_terms_menu "$excludeFile" "$existingExclusions" ;;
         3) search_roms "$existingTerms" "$existingExclusions"; cleanup_collection; show_edit_collection_menu ;;
         4) delete_collection_shortcuts; search_roms "$existingTerms" "$existingExclusions"; show_edit_collection_menu ;;
-        5) delete_collection; show_main_menu ;;
+        5) echo ""; delete_collection; show_main_menu ;;
         9) show_collections_menu ;;
         0) show_main_menu ;;
         *) echo "Invalid selection, please try again."; show_edit_collection_menu ;;

@@ -28,18 +28,11 @@ create_shortcut() {
         while [ "$#" -gt 0 ]; do
             exclusion=$(echo "$1" | xargs)
             local exclusionLower="$(lower_case "$exclusion")"
-
             if [[ "$shortcutNameLower" == *"$exclusionLower"* ]]; then
                 includeRom=0
                 excludeRom=1
                 echo "$relativePath" >> "$excludedFilesTemp"
-                feedback="    Excluding: $relativePath ($exclusionLower)"
-                if [ ${#feedback} -gt 50 ]; then
-                    relLen=$((50 - ${#feedback} + ${#relativePath}))
-                    relativePath="${relativePath:0:relLen}..."
-                    feedback="    Excluding: $relativePath ($exclusionLower)"
-                fi
-                echo "$feedback"
+                echo_trim "$relativePath" 53 "    Excluding: " " ($exclusionLower)"
                 break
             fi
             shift
@@ -82,8 +75,8 @@ remove_broken_shortcuts() {
             if [ -f "$imgFile" ]; then
                 rm "$imgFile"
             fi
-            echo "  Removed broken shortcut: ~${file#*$ROM_DIR*}"
-            echo "    Target: ~${content#*$ROM_DIR*}"
+            echo_trim "${file#*$ROM_DIR*}" 53 "  Broken shortcut: ~"
+            echo_trim "${content#*$ROM_DIR*}" 53 "    Target: ~"
         fi
     done
 }
@@ -92,7 +85,7 @@ delete_empty_folders() {
     find "$collectionDir" -type d -empty | while read -r dir; do
         rm -r "$dir"
         dirname=$(basename "$dir")
-        echo "  Removed empty folder: $dirname"
+        echo_trim "$dirname" 53 "  Empty folder: "
     done
 }
 
@@ -103,7 +96,7 @@ remove_redundant_images() {
         imgName=$(basename "$img" .png)
         if ! grep -Fxq "$imgName" "$tmpFile"; then
             rm "$img"
-            echo "  Remove image: $imgName.png"
+            echo_trim "$$imgName" 53 "  Unlinked image: " ".png"
         fi
     done
     rm "$tmpFile"
