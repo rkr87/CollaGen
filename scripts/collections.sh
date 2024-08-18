@@ -64,7 +64,6 @@ EOF
 
 delete_collection() {
     notified=0
-    echo ""
     if [ -d "$collectionDir" ]; then
         rm -r "$collectionDir"
         echo "Deleted: $collectionName"

@@ -149,7 +149,7 @@ delete_all_collections() {
 
 execute_deletions() {
     local jobs_file="$1"
-
+    echo ""
     while IFS= read -r job; do
         if [ -n "$job" ]; then
             set_collection "$job"
