@@ -13,7 +13,7 @@ LANG_DIR="/usr/trimui/res/lang"
 LANG_BEST_TAB_KEY="140"
 
 ## APP
-VERSION="2024.8.18.3"
+VERSION="2024.8.18.4"
 CONFIG_DIR="config"
 SCRIPTS_DIR="scripts"
 
@@ -25,3 +25,5 @@ DEFAULT_LAUNCH="launch.sh"
 
 APP_INCLUDE="include.txt"
 APP_EXCLUDE="exclude.txt"
+
+EXTENSION_EXCLUSIONS="srm,db,sav"

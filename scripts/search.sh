@@ -30,7 +30,17 @@ search_files_by_keyword() {
     local keyword="$1"
     local exclusions="$2"
     echo "  Searching files for '$keyword'"
-    find "$ROOT_DIR/$ROM_DIR" -type f -iname "*$keyword*" ! -iname "*.db" ! -path "*/.*/*" | while IFS= read -r foundFile; do
+    set -- find "$ROOT_DIR/$ROM_DIR" -type f -iname "*$keyword*" ! -path "*/.*/*"
+
+    local ext
+    OLDIFS="$IFS"
+    IFS=',' 
+    for ext in $EXTENSION_EXCLUSIONS; do
+        set -- "$@" ! -iname "*.$ext"
+    done
+    IFS="$OLDIFS"
+
+    "$@" | while IFS= read -r foundFile; do
         local baseName=$(basename "$foundFile")
         create_shortcut "${foundFile#$ROOT_DIR/$ROM_DIR/}" "${baseName%.*}" "$exclusions"
     done
