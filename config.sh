@@ -15,6 +15,7 @@ LANG_DIR="/usr/trimui/res/lang"
 LANG_BEST_TAB_KEY="140"
 
 ## APP
+APP_NAME="CollaGen"
 VERSION="2024.8.20.2"
 CONFIG_DIR="config"
 SCRIPTS_DIR="scripts"
