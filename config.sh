@@ -22,6 +22,7 @@ SCRIPTS_DIR="scripts"
 DEFAULTS_DIR="defaults"
 DEFAULT_CONFIG="config.json"
 DEFAULT_ICON="icon.png"
+DEFAULT_ICON_SEL="icon_selected.png"
 DEFAULT_BG="bg.png"
 DEFAULT_LAUNCH="launch.sh"
 
