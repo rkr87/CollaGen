@@ -4,7 +4,6 @@ PATH="/mnt/SDCARD/System/bin:$PATH"
 export LD_LIBRARY_PATH="/mnt/SDCARD/System/lib:$LD_LIBRARY_PATH"
 
 APP_DIR="$(cd "$(dirname "$0")" && pwd)"
-APP_NAME=$(basename "$APP_DIR")
 
 . "$APP_DIR/config.sh"
 . "$APP_DIR/scripts/formats.sh"

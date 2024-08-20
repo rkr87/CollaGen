@@ -56,7 +56,8 @@ identify_valid_jobs() {
             if echo -e "$checkedCollections" | grep -q -e "^$osCollName"; then
                 continue
             fi
-            echo -e "$osCollName: ${RED}NOT DEFINED IN COLLGEN${NO_FORMAT}"
+            appNameUpper=$(upper_case $APP_NAME)
+            echo -e "$osCollName: ${RED}NOT DEFINED IN $appNameUpper${NO_FORMAT}"
             checkedCollections="$checkedCollections$appCollName\n"
         fi
     done
@@ -90,7 +91,7 @@ refresh_all_collections() {
     local validJobString=$(get_list_from_file "$validJobs")
     if [ "$regen" == "regen" ]; then
         echo "Regenerating a collection will remove any shortcuts you've manually added to a collection."
-        echo "CollGen will only regenerate collections it has created or has been linked to, the below collections have been identified for regeneration."
+        echo "$APP_NAME will only regenerate collections it has created or has been linked to, the below collections have been identified for regeneration."
         echo ""
         echo "$validJobString"
         local choice=$(get_user_input "Proceed y/[n]:" "n")
@@ -137,7 +138,7 @@ delete_all_collections() {
     fi
 
     local validJobString=$(get_list_from_file "$validJobs")
-    echo "CollGen will only delete collections it has created or has been linked to, the below collections have been identified for deletion."
+    echo "$APP_NAME will only delete collections it has created or has been linked to, the below collections have been identified for deletion."
     echo ""
     echo "$validJobString"
     local choice=$(get_user_input "Proceed y/[n]:" "n")
