@@ -79,6 +79,12 @@ lower_case() {
     echo "$stringLower"
 }
 
+upper_case() {
+    local string="$1"
+    local stringLower=$(echo "$string" | tr '[:lower:]' '[:upper:]')
+    echo "$stringLower"
+}
+
 list_to_string() {
     local commaList=$(echo "$1" | tr '\n' ',' | sed 's/,$//')
     echo "$commaList"
