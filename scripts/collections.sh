@@ -26,6 +26,7 @@ create_collection() {
             mkdir -p "$collectionDir/$IMG_DIR"
             mkdir -p "$collectionDir/$ROM_DIR"
             cp "$APP_DIR/$DEFAULTS_DIR/$DEFAULT_ICON" "$collectionDir/"
+            cp "$APP_DIR/$DEFAULTS_DIR/$DEFAULT_ICON_SEL" "$collectionDir/"
             cp "$APP_DIR/$DEFAULTS_DIR/$DEFAULT_BG" "$collectionDir/"
             cp "$APP_DIR/$DEFAULTS_DIR/$DEFAULT_LAUNCH" "$collectionDir/"
             create_collection_config
@@ -49,6 +50,7 @@ create_collection_config() {
 {
     "label": "$collectionName",
     "icon": "$DEFAULT_ICON",
+    "iconsel": "$DEFAULT_ICON_SEL",
     "background": "$DEFAULT_BG",
     "themecolor": "f0b402",
     "launch": "$DEFAULT_LAUNCH",

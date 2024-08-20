@@ -15,13 +15,14 @@ LANG_DIR="/usr/trimui/res/lang"
 LANG_BEST_TAB_KEY="140"
 
 ## APP
-VERSION="2024.8.18.6"
+VERSION="2024.8.20.1"
 CONFIG_DIR="config"
 SCRIPTS_DIR="scripts"
 
 DEFAULTS_DIR="defaults"
 DEFAULT_CONFIG="config.json"
 DEFAULT_ICON="icon.png"
+DEFAULT_ICON_SEL="icon_selected.png"
 DEFAULT_BG="bg.png"
 DEFAULT_LAUNCH="launch.sh"
 
