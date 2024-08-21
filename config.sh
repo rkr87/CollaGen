@@ -7,6 +7,7 @@ ROM_DIR="Roms"
 IMG_DIR="Imgs"
 EMU_DIR="Emus"
 EMU_EXT_KEY="extlist"
+ROM_CACHE_FILE="Roms_cache7.db"
 
 ## SYSTEM
 SYSTEM_FILE="/mnt/UDISK/system.json"
