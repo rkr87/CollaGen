@@ -67,6 +67,14 @@ cleanup_collection() {
     remove_broken_shortcuts
     delete_empty_folders
     remove_redundant_images
+    delete_cache
+}
+
+delete_cache() {
+    cacheFile="$collectionDir/$ROM_DIR/$ROM_CACHE_FILE"
+    if [ -f "$cacheFile" ]; then
+        rm "$cacheFile"
+    fi
 }
 
 remove_broken_shortcuts() {

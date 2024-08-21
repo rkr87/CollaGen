@@ -7,6 +7,7 @@ ROM_DIR="Roms"
 IMG_DIR="Imgs"
 EMU_DIR="Emus"
 EMU_EXT_KEY="extlist"
+ROM_CACHE_FILE="Roms_cache7.db"
 
 ## SYSTEM
 SYSTEM_FILE="/mnt/UDISK/system.json"
@@ -16,7 +17,7 @@ LANG_BEST_TAB_KEY="140"
 
 ## APP
 APP_NAME="CollaGen"
-VERSION="2024.8.20.2"
+VERSION="2024.8.21.1"
 CONFIG_DIR="config"
 SCRIPTS_DIR="scripts"
 
